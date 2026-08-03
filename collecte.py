@@ -4,16 +4,19 @@ from datetime import datetime
 import os
 import io
 
+
+#Récupère le flux CSV public d'URLhaus contenant les URLs malveillantes récentes , et retourne un DataFrame pandas.
+
 def collecter_urlhaus():
-    """
-    Récupère le flux CSV public d'URLhaus contenant les URLs malveillantes
-    récentes, et retourne un DataFrame pandas.
-    """
+
     url = "https://urlhaus.abuse.ch/downloads/csv_recent/"
 
     print("Téléchargement des données depuis URLhaus...")
     response = requests.get(url)
-    response.raise_for_status()  # lève une erreur si le téléchargement échoue
+
+
+    # lève une erreur si le téléchargement échoue
+    response.raise_for_status()
 
     # Le fichier CSV d'URLhaus contient des lignes de commentaires (#) à ignorer
     contenu = response.text
